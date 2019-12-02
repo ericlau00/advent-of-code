@@ -7,26 +7,25 @@
 #include <sys/stat.h> //umask, stat
 #include <time.h>     //ctime
 
-int fuel_req(int mass)
-{
-    return mass / 3 - 2;
-}
-
 int main()
 {
-    char file_name[10] = "input.txt";
+    int SIZE = 100;
+    int masses[SIZE];
+    FILE *file;
 
-    struct stat meta_buff;
-    stat(file_name, &meta_buff);
-
-    char file_buff[meta_buff.st_size];
-    int fd = open(file_name, O_RDONLY);
-    read(fd, file_buff, sizeof(file_buff));
+    file = fopen("input.txt", "r");
 
     int i;
-    for (i = 0; i < meta_buff.st_size; i++)
+    int total;
+    for (i = 0; i < SIZE; i++)
     {
-        printf("%d\n", file_buff[i]);
+        fscanf(file, "%d", &masses[i]);
+        total += masses[i] / 3 - 2;
     }
+
+    fclose(file);
+
+    printf("Answer to part 1: %d\n", total);
+
     return 0;
 }
