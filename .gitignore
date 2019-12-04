@@ -1,5 +1,7 @@
 program
 
+*.class
+
 # Prerequisites
 *.d
 

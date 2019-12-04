@@ -3,18 +3,12 @@ def main(part):
     fuels = [int(mass) // 3 - 2 for mass in masses]
     total = 0
     for fuel in fuels:
-        if part == 1:
-            total += fuel
-        else:
-            total += sub(fuel)
+        total += fuel if part == 1 else sub(fuel)
     return total
 
 
 def sub(fuel):
-    if(fuel < 0):
-        return 0
-    else:
-        return sub(fuel // 3 - 2) + fuel
+    return 0 if fuel < 0 else sub(fuel // 3 - 2) + fuel
 
 
 if __name__ == "__main__":
