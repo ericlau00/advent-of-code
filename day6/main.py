@@ -26,3 +26,8 @@ while len(second_pass.keys()) > 0:
             second_pass.pop(planet)
 
 print("Answer to part 1:", total)
+
+for planet in relationships['YOU']:
+    if planet in relationships['SAN']:
+        print("Answer to part 2:", relationships['YOU'].index(planet) + relationships['SAN'].index(planet))
+        break
