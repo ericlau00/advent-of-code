@@ -1,8 +1,6 @@
 system = open("input.txt").read().split("\n")
 
-relationships = dict()
-
-total = 0
+relationships, second_pass, total = dict(), dict(), 0
 
 for orbit in system:
     in_out = orbit.split(")")
@@ -15,5 +13,16 @@ for orbit in system:
         for planet in relationships[inner]:
             total += 1
             relationships[outer].append(planet)
-    else:
-        # for inner planets that have not yet been inserted into the dictionary, you need to make a second pass
+    if not 'COM' in relationships[outer]:
+        second_pass[outer] = list()
+
+while len(second_pass.keys()) > 0:
+    for planet in list(second_pass.keys()):
+        fill_rest = relationships[planet][-1]
+        for n in relationships[fill_rest]:
+            total += 1
+            relationships[planet].append(n)
+        if 'COM' in relationships[planet]:
+            second_pass.pop(planet)
+
+print("Answer to part 1:", total)
