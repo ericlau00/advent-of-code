@@ -34,7 +34,19 @@ func solvePartOne(freqs []int) int {
 }
 
 func solvePartTwo(freqs []int) int {
-	return 0
+	m := make(map[int]bool)
+	sum := 0
+
+	for !m[sum] {
+		for _, num := range freqs {
+			m[sum] = true
+			sum += num
+			if m[sum] {
+				break
+			}
+		}
+	}
+	return sum
 }
 
 func main() {
@@ -46,6 +58,6 @@ func main() {
 	data := strings.Split(string(input), "\n")
 	freqs := getFrequencies(data)
 
-	// fmt.Println("Answer to part 1:", solvePartOne(freqs))
+	fmt.Println("Answer to part 1:", solvePartOne(freqs))
 	fmt.Println("Answer to part 2:", solvePartTwo(freqs))
 }
