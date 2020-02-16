@@ -8,6 +8,15 @@ import (
 	"strings"
 )
 
+func getData(file string) []string {
+	input, err := ioutil.ReadFile(file)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return strings.Split(string(input), "\n")
+}
+
 func getFrequencies(data []string) []int {
 	freqs := []int{}
 
@@ -50,12 +59,7 @@ func solvePartTwo(freqs []int) int {
 }
 
 func main() {
-	input, err := ioutil.ReadFile("input.txt")
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	data := strings.Split(string(input), "\n")
+	data := getData("input")
 	freqs := getFrequencies(data)
 
 	fmt.Println("Answer to part 1:", solvePartOne(freqs))
