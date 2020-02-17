@@ -9,6 +9,10 @@ fs.readFile('input', 'utf8', (err, data) => {
         } else {
             floor--;
         }
+        if(floor == -1) {
+            console.log(i + 1);
+            break;
+        }
     }
     console.log(floor);
 })
